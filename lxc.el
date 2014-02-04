@@ -5,6 +5,7 @@
 ;; Author: Nic Ferrier <nferrier@ferrier.me.uk>
 ;; Keywords: processes
 ;; Version: 0.0.1
+;; Url: https://github.com/nicferrier/emacs-lxc
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
