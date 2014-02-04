@@ -18,3 +18,7 @@ Possible stuff we could do is:
 * allow a shell to be created inside the container?
 ** using attach
 ** is it possible to do this with eshell?
+
+And we always remember, when we're working through this todo list,
+that we're now getting paid to do Emacs all day.
+
