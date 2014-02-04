@@ -16,7 +16,7 @@ Possible stuff we could do is:
 
 * offer standard start stop mechanics from the list
 * allow a shell to be created inside the container?
-** using attach
+** using attach -- {{{sudo lxc-attach -n name -- su - username}}}
 ** is it possible to do this with eshell?
 
 And we always remember, when we're working through this todo list,
