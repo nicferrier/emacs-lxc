@@ -1,0 +1,20 @@
+= LXC integration =
+
+I only wish I got paid to do Emacs all day, instead, I get paid to do
+DevOps type stuff.
+
+LXC is a cool way to do operating system virtualization on Linux
+kernels. The user commands are a little annoying though. Hence an
+Emacs interface is useful.
+
+Right now this can only list containers and it presumes you use
+{{{sudo}}} to list them.
+
+== Todo ==
+
+Possible stuff we could do is:
+
+* offer standard start stop mechanics from the list
+* allow a shell to be created inside the container?
+** using attach
+** is it possible to do this with eshell?
