@@ -56,6 +56,7 @@
              vconcat (list (list col 20 nil))))
     (tabulated-list-init-header))
 
+;;;###autoload
 (defun list-lxc ()
   "Show the list of LXC containers you have."
   (interactive)
