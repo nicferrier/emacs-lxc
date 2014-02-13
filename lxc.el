@@ -40,6 +40,36 @@
                (lambda (s) (> (length s) 0))
                (split-string s " ")))))))
 
+(defun lxc/get-id ()
+  (if (not (eq major-mode 'lxc-list-table-mode))
+      (error "lxc-start: need an ID")
+      (list
+       (buffer-substring-no-properties
+        (line-beginning-position)
+        (save-excursion
+          (goto-char (line-beginning-position))
+          (- 
+           (or
+            (re-search-forward " " (line-end-position) t)
+            (line-end-position)) 1))))))
+
+(defun lxc-start (id)
+  "Start the specified LXC container."
+  (interactive (lxc/get-id))
+  (shell-command (format "sudo lxc-start -d -n %s" id))
+  (when (called-interactively-p 'any)
+    (tabulated-list-print)))
+
+(defun lxc-kill (id)
+  "Stop the specified LXC container.
+
+This doesn't actually do an LXC KILL, it uses LXC clean shut
+down."
+  (interactive (lxc/get-id))
+  (shell-command (format "sudo lxc-stop -n %s" id))
+  (when (called-interactively-p 'any)
+    (tabulated-list-print)))
+
 (defun lxc/table-entrys ()
   "Make the table entries for `tabulated-list-mode'."
   (-map (lambda (e)
@@ -50,7 +80,9 @@
     lxc-list-table-mode tabulated-list-mode "LXC containers"
     "Major mode for listing your LXC containers."
     (setq tabulated-list-entries 'lxc/table-entrys)
-    ;; This is wrong! it needs to be derived from display-time-world-list
+    ;; Make a key to start and stop lxc's
+    (define-key lxc-list-table-mode-map (kbd "s") 'lxc-start)
+    (define-key lxc-list-table-mode-map (kbd "k") 'lxc-kill)
     (setq tabulated-list-format
           (loop for col in (list "name" "state" "pid" "IP")
              vconcat (list (list col 20 nil))))
