@@ -97,5 +97,18 @@ down."
     (tabulated-list-print)
     (switch-to-buffer (current-buffer))))
 
+(defun lxc-open (name)
+  "Open a tramp session to the container."
+  (interactive
+   (list
+    (progn
+      (goto-char (line-beginning-position))
+      (re-search-forward "^\\([a-zA-Z0-9-]+\\)" (line-end-position) t)
+      (let ((name (match-string 1))) name))))
+  (let* ((container (kva name (lxc/list)))
+         (ip (elt container 2)))
+    ;; where do we get the username from?
+    (find-file-other-window (format "/ssh:ubuntu@%s:" ip))))
+
 (provide 'lxc)
 ;;; lxc.el ends here
