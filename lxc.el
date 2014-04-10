@@ -83,6 +83,7 @@ down."
     ;; Make a key to start and stop lxc's
     (define-key lxc-list-table-mode-map (kbd "s") 'lxc-start)
     (define-key lxc-list-table-mode-map (kbd "k") 'lxc-kill)
+    (define-key lxc-list-table-mode-map (kbd "O") 'lxc-open)
     (setq tabulated-list-format
           (loop for col in (list "name" "state" "pid" "IP")
              vconcat (list (list col 20 nil))))
